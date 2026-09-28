@@ -1,0 +1,17 @@
+# Unreal Engine 5 
+#(белый список по официальному шаблону Epic Games)
+!*/
+!/.git*
+!/*.uproject
+!/Source/**
+!/Config/**
+!/Plugins/**
+!/Content/**/*.uasset
+!/Content/**/*.umap
+!/RawContent/**/*
+ehthumbs.db
+Thumbs.db
+.DS_Store
+*~
+.vs/
+.vscode/
