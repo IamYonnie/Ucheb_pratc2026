@@ -8,16 +8,15 @@ import java.util.Collection;
 
 public class ByFileNameRule implements AssetCheckRule {
 
-    public CheckResult check(SceneAsset required, Collection<SceneAsset> available) {
+    public CheckResult check(SceneAsset required, Collection<String> available) {
         if (required == null) {
             return CheckResult.fail("требуемый ресурс не задан");
         }
         if (available == null || available.isEmpty()) {
             return CheckResult.fail("нет ни одного доступного ресурса");
         }
-        for (SceneAsset candidate : available) {
-            if (candidate != null
-                    && candidate.getFileName().equalsIgnoreCase(required.getFileName())) {
+        for (String candidate : available) {
+            if (candidate != null && candidate.equalsIgnoreCase(required.getFileName())) {
                 return CheckResult.ok();
             }
         }

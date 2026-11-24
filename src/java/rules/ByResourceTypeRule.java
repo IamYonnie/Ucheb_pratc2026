@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class ByResourceTypeRule implements AssetCheckRule {
 
-    public CheckResult check(SceneAsset required, Collection<SceneAsset> available) {
+    public CheckResult check(SceneAsset required, Collection<String> available) {
         if (required == null) {
             return CheckResult.fail("требуемый ресурс не задан");
         }
@@ -24,9 +24,8 @@ public class ByResourceTypeRule implements AssetCheckRule {
                     + " (ожидается ." + expectedExt + ")");
         }
         // Поиск доступного ресурса с тем же именем файла
-        for (SceneAsset candidate : available) {
-            if (candidate != null
-                    && candidate.getFileName().equalsIgnoreCase(required.getFileName())) {
+        for (String candidate : available) {
+            if (candidate != null && candidate.equalsIgnoreCase(required.getFileName())) {
                 return CheckResult.ok();
             }
         }

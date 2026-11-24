@@ -3,11 +3,12 @@ package scene;
 import rules.AssetCheckRule;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 // AR-сцена
 public class ArScene {
@@ -21,10 +22,7 @@ public class ArScene {
 
     public ArScene(List<SceneObject> objects, Map<String, int[]> standardPositions) {
         this.objects = new ArrayList<>(objects);
-        this.standardPositions = new TreeMap<>();
-        for (var e : standardPositions.entrySet()) {
-            this.standardPositions.put(e.getKey(), e.getValue().clone());
-        }
+        this.standardPositions = new TreeMap<>(standardPositions);
     }
 
     public void registerAvailableFile(String fileName) {
@@ -50,9 +48,11 @@ public class ArScene {
 
     // 1. Проверка наличия AR-ресурсов
     public boolean checkAssets(List<SceneAsset> required, AssetCheckRule rule) {
+        Set<String> available = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        available.addAll(availableFiles);
         boolean isComplete = true;
         for (SceneAsset req : required) {
-            AssetCheckRule.CheckResult res = rule.check(req, asAssets(availableFiles));
+            AssetCheckRule.CheckResult res = rule.check(req, available);
             if (!res.isOk()) {
                 System.out.println("Отсутствуют необходимые файлы: " + req.getFileName());
                 isComplete = false;
@@ -90,21 +90,5 @@ public class ArScene {
             }
             System.out.println("Объект " + obj.getId() + ": X=" + obj.getPosX() + ", Y=" + obj.getPosY());
         }
-    }
-
-    private static Collection<SceneAsset> asAssets(List<String> fileNames) {
-        List<SceneAsset> result = new ArrayList<>();
-        for (String name : fileNames) {
-            result.add(new SceneAsset("available", "LAB_01", name, inferType(name)));
-        }
-        return result;
-    }
-
-    private static SceneAsset.ResourceType inferType(String fileName) {
-        String ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-        if ("png".equalsIgnoreCase(ext)) {
-            return SceneAsset.ResourceType.AR_MARKER;
-        }
-        return SceneAsset.ResourceType.MODEL_3D;
     }
 }

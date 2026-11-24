@@ -9,8 +9,8 @@ import java.util.Collection;
 public interface AssetCheckRule {
 
     // Проверка, удовлетворяет ли требуемый ресурс доступному
-
-    CheckResult check(SceneAsset required, Collection<SceneAsset> available);
+    
+    CheckResult check(SceneAsset required, Collection<String> available);
 
     String name();
 
