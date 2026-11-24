@@ -102,13 +102,11 @@ public final class Main {
 
             if ("1".equals(choice)) {
                 // Проверка ресурсов
-                List<SceneAsset> required = filterByLab(arResources, selectedLabId);
+                List<SceneAsset> required = scene.getRequiredFiles(arResources, selectedLabId);
                 AssetCheckRule rule = new ByFileNameRule();
                 boolean isComplete = scene.checkAssets(required, rule);
                 if (isComplete) {
                     System.out.println("Все необходимое оборудование присутствует в лаборатории.");
-                } else {
-                    System.out.println("Комплектность не полная. Проведение работы невозможно.");
                 }
             } else if ("2".equals(choice)) {
                 // Сброс сцены
@@ -126,16 +124,5 @@ public final class Main {
             }
         }
         scanner.close();
-    }
-
-    // Аналог GetRequiredARFiles
-    private static List<SceneAsset> filterByLab(List<SceneAsset> resources, String labWorkId) {
-        List<SceneAsset> result = new ArrayList<>();
-        for (SceneAsset r : resources) {
-            if (r.getLabWorkId().equals(labWorkId)) {
-                result.add(r);
-            }
-        }
-        return result;
     }
 }

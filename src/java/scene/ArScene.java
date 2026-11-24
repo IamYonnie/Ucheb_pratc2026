@@ -36,14 +36,14 @@ public class ArScene {
         return Collections.unmodifiableList(availableFiles);
     }
 
-    public List<String> getRequiredFiles(List<SceneAsset> resources, String labWorkId) {
-        List<String> names = new ArrayList<>();
+    public List<SceneAsset> getRequiredFiles(List<SceneAsset> resources, String labWorkId) {
+        List<SceneAsset> result = new ArrayList<>();
         for (SceneAsset r : resources) {
             if (r.getLabWorkId().equals(labWorkId)) {
-                names.add(r.getFileName());
+                result.add(r);
             }
         }
-        return names;
+        return result;
     }
 
     // 1. Проверка наличия AR-ресурсов
