@@ -21,7 +21,10 @@ public class ArScene {
 
     public ArScene(List<SceneObject> objects, Map<String, int[]> standardPositions) {
         this.objects = new ArrayList<>(objects);
-        this.standardPositions = new TreeMap<>(standardPositions);
+        this.standardPositions = new TreeMap<>();
+        for (var e : standardPositions.entrySet()) {
+            this.standardPositions.put(e.getKey(), e.getValue().clone());
+        }
     }
 
     public void registerAvailableFile(String fileName) {
