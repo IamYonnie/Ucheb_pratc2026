@@ -99,7 +99,7 @@ namespace ARLabApp
                 Console.WriteLine("3. Просмотреть методические указания");
                 Console.WriteLine("4. Просмотреть инструктаж");
                 Console.WriteLine("5. Покинуть программу");
-                Console.Write("Выберите действие (1-4): ");
+                Console.Write("Выберите действие (1-5): ");
                 string choice = Console.ReadLine();
 
                 if (choice == "1")
