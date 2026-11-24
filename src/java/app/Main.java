@@ -92,7 +92,7 @@ public final class Main {
             System.out.println("3. Просмотреть методические указания");
             System.out.println("4. Просмотреть инструктаж");
             System.out.println("5. Покинуть программу");
-            System.out.print("Выберите действие (1-4): ");
+            System.out.print("Выберите действие (1-5): ");
             String choice;
             if (!scanner.hasNextLine()) {
                 System.out.println();
