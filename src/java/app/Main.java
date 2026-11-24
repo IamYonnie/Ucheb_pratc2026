@@ -123,6 +123,5 @@ public final class Main {
                 System.out.println("Неверный ввод.");
             }
         }
-        scanner.close();
     }
 }
