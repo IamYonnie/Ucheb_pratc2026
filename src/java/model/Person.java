@@ -30,11 +30,11 @@ public abstract class Person {
         return fullName;
     }
 
-    public final String getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public final void setContact(String contact) {
+    protected final void setContact(String contact) {
         this.contact = contact == null ? "" : contact.trim();
     }
 

@@ -8,7 +8,7 @@ public class Student extends Person {
     private final String login;
 
     public Student(String id, String fullName, String groupNumber, String login) {
-        super(id, fullName, "");
+        super(id, fullName, login);
         if (groupNumber == null || groupNumber.isBlank()) {
             throw new IllegalArgumentException("Номер группы обязателен");
         }
@@ -17,14 +17,13 @@ public class Student extends Person {
         }
         this.groupNumber = groupNumber.trim();
         this.login = login.trim();
-        setContact(login);
     }
 
     public String getGroupNumber() {
         return groupNumber;
     }
 
-    public String getLogin() {
+    public String getContact() {
         return login;
     }
 
